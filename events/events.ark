@@ -1,0 +1,42 @@
+(import "List.ark")
+(import "Exceptions.ark")
+
+(let make_eventsManager (fun () {
+    # listeners list
+    (mut _listeners [])
+
+    # checks if the callback for the listener is valid
+    (let _check_valid (fun (callback)
+        (or (= "Function" (type callback)) (= "Closure" (type callback)))))
+
+    # Adds a listener to the list
+    (let on (fun (typ callback) 
+        (if (_check_valid callback)
+            (set _listeners (append _listeners [typ callback]))
+            (print "Warning: Listener " typ "|" callback " : callback is not a function"))))
+
+    # emits an event and calls all listeners listening for that type
+    (let emit (fun (typ)
+        (list:forEach _listeners (fun (element)
+            (if (= typ (@ element 0)) 
+                ((@ element 1)) )))))
+
+    # removes all listeners of the given type
+    (let remove_listeners_of_type (fun (typ)
+        (set _listeners 
+            (list:filter _listeners (fun (element)
+                (!= typ (@ element 0)) )))))
+
+    (fun (
+        # listeners
+        &_listeners 
+
+        # hidden methods
+        &_check_valid
+        
+        # methods
+        &on
+        &emit
+        &remove_listeners_of_type
+        ) ())
+}))
