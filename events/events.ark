@@ -6,23 +6,23 @@
 
     # checks if the callback for the listener is valid
     (let _check_valid (fun (callback)
-        (or (= "Function" (type callback)) (= "Closure" (type callback)))))
+        (or (= "Function" (type callback)) (= "Closure" (type callback)) )))
 
     # Adds a listener to the list
     (let on (fun (typ callback) 
         (if (_check_valid callback)
             (set _listeners (append _listeners [typ callback]))
-            (print "Warning: Listener " typ "|" callback " : callback is not a function"))))
+            (print "Warning: Listener " typ "|" callback " : callback is not a function") )))
 
     # emits an event and calls all listeners listening for that type, giving them the emitted value
-    (let emitWith (fun (typ val)
+    (let emitWith (fun (val typ)
         (list:forEach _listeners (fun (element)
             (if (= typ (@ element 0)) 
                 ((@ element 1) val) )))))
 
     # emits an event with no parameter
     (let emit (fun (typ)
-        (emitWith typ nil)))
+        (emitWith nil typ) ))
 
     # removes all listeners of the given type
     (let remove_listeners_of_type (fun (typ)
@@ -32,7 +32,7 @@
 
     (fun (
         # listeners
-        &_listeners 
+        &_listeners
 
         # hidden methods
         &_check_valid

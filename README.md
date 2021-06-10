@@ -13,9 +13,9 @@ Then, you can register an event listener using the `(on <type> <callback>)` func
 ```
 This registers an event that listens for the type "myType" and prints something to the console when an event of said type is emitted.
 
-Finally, you can emit an event using the `(emitWith <type> <value>)` function:
+Finally, you can emit an event using the `(emitWith <value> <type>)` function:
 ```lisp
-(events_manager.emitWith "myType" 4)
+(events_manager.emitWith 4 "myType")
 ```
 
-Alternatively, if you wish to emit with no value, you can call `emit <type>` (which calls `emitWith <type> nil`)
+Alternatively, if you wish to emit with no value, you can call `emit <type>` (which calls `emitWith nil <type>`)

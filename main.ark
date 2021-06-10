@@ -11,5 +11,5 @@
 (events_manager.remove_listeners_of_type "D") # Removes all events_manager listening for the type "D"
 
 # Emitting an event
-(events_manager.emitWith "C" 4) # Emits an event of type "C"
+(events_manager.emitWith 4 "C") # Emits an event of type "C"
 (events_manager.emit "C") # Emits an event without parameter
