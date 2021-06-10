@@ -1,6 +1,6 @@
 (import "./events/events.ark")
 
-(let events_manager (make_eventsManager))
+(let events_manager (events:manager:make))
 
 (print "before adding listeners: " events_manager._listeners)
 

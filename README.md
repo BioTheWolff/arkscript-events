@@ -4,7 +4,7 @@ A small ArkScript lib for events emitting/listening
 ## Description
 First of all, create the events manager using the `make_eventsManager` closure
 ```lisp
-(let events_manager (make_eventsManager))
+(let events_manager (events:manager:make))
 ```
 
 Then, you can register an event listener using the `on` function:

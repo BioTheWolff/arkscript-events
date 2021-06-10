@@ -1,7 +1,7 @@
 (import "List.ark")
 (import "Exceptions.ark")
 
-(let make_eventsManager (fun () {
+(let events:manager:make (fun () {
     # listeners list
     (mut _listeners [])
 
