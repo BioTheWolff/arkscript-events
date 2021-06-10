@@ -2,15 +2,14 @@
 
 (let events_manager (events:manager:make))
 
-(print "before adding listeners: " events_manager._listeners)
-
+# Adding listeners
 (events_manager.on "T" 3) # Will not work and will print "Warning: Listener T|3 : callback is not a function"
-(events_manager.on "C" (fun () (print "Caught event of type C"))) # Will work
-(events_manager.on "D" (fun () (print "Caught event of type D"))) # Will work
+(events_manager.on "C" (fun (param) (print "Caught event of type C with param " param))) # Will work
+(events_manager.on "D" (fun (_) (print "Caught event of type D"))) # Will work
 
-(print "after adding listeners: " events_manager._listeners)
-
+# Deleting listeners
 (events_manager.remove_listeners_of_type "D") # Removes all events_manager listening for the type "D"
-(print "removed D types: " events_manager._listeners)
 
-(events_manager.emit "C") # Emits an event of type "C"
+# Emitting an event
+(events_manager.emitWith "C" 4) # Emits an event of type "C"
+(events_manager.emit "C") # Emits an event without parameter

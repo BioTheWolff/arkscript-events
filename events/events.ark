@@ -1,5 +1,4 @@
 (import "List.ark")
-(import "Exceptions.ark")
 
 (let events:manager:make (fun () {
     # listeners list
@@ -15,11 +14,15 @@
             (set _listeners (append _listeners [typ callback]))
             (print "Warning: Listener " typ "|" callback " : callback is not a function"))))
 
-    # emits an event and calls all listeners listening for that type
-    (let emit (fun (typ)
+    # emits an event and calls all listeners listening for that type, giving them the emitted value
+    (let emitWith (fun (typ val)
         (list:forEach _listeners (fun (element)
             (if (= typ (@ element 0)) 
-                ((@ element 1)) )))))
+                ((@ element 1) val) )))))
+
+    # emits an event with no parameter
+    (let emit (fun (typ)
+        (emitWith typ nil)))
 
     # removes all listeners of the given type
     (let remove_listeners_of_type (fun (typ)
@@ -37,6 +40,7 @@
         # methods
         &on
         &emit
+        &emitWith
         &remove_listeners_of_type
         ) ())
 }))
