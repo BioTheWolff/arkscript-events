@@ -17,5 +17,11 @@ Finally, you can emit an event using the `(emitWith <value> <type>)` function:
 ```lisp
 (events_manager.emitWith 4 "myType")
 ```
-
 Alternatively, if you wish to emit with no value, you can call `emit <type>` (which calls `emitWith nil <type>`)
+
+If you wish to delete listeners, you can use `(removeListenersOfType <type>)`:
+```lisp
+(removeListenersOfType "myType")
+```
+
+If you want to see the return values, or how it works, check out the `events/Event.ark` file.
