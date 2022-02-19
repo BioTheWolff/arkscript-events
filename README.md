@@ -1,6 +1,8 @@
 # arkscript-events
 A small ArkScript lib for events emitting/listening
 
+### Now implemented into the [core lib](https://github.com/ArkScript-lang/std) of [ArkScript](https://github.com/ArkScript-lang/Ark)!!
+
 ## Description
 First of all, create the events manager using the `make_eventsManager` closure
 ```lisp
